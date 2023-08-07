@@ -18,7 +18,14 @@ const corsOptions = {
 }
 
 const app = express();
-app.use(cors(corsOptions))
+app.use(cors(corsOptions), (req, res, next) => {
+  if (req.headers.origin && !corsOptions.origin.includes(req.headers.origin)) {
+    res.status(403).send('No tienes acceso a este recurso.');
+  } else {
+    next();
+  }
+});
+
 app.use(express.json());
 
 app.get("/todos/:id", async (req, res) => {
