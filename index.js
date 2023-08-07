@@ -12,7 +12,7 @@ import {
 import cors from "cors";
 
 const corsOptions = {
-    origin: 'http://123.22.0.1:5173',
+    origin: process.env.CORS_ORIGIN,
     methods: ['POST', 'GET'],
     credentials: true
 }
